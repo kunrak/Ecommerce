@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -158,12 +157,11 @@ const useStyles = makeStyles((theme) => ({
     detailsBlock311_input: {
         border: 'none',
         padding: '0.5vmax',
-        width: '1vmax',
+        width: '2.5vmax',
         textAlign: 'center',
         outline: 'none',
         fontFamily: 'Roboto',
         fontWeight: 400,
-        fontSize: '0.8vmax',
         color: 'rgba(0, 0, 0, 0.74)',
     },
     detailsBlock4: {
@@ -506,7 +504,7 @@ const ProductDetails = () => {
                             <Box className={classes.detailsBlock3}>
                                 <h1>{`₹${product.price}`}</h1>
                                 <Box className={classes.detailsBlock31}>
-                                    <Box className={classes.detailsBlock311}>
+                                    <Box className={classes.detailsBlock311} mr={2}>
                                         <button className={classes.detailsBlock311_button} onClick={decreaseQuantity}>-</button>
                                         <input className={classes.detailsBlock311_input} readOnly type="number" value={quantity} />
                                         <button className={classes.detailsBlock311_button} onClick={increaseQuantity}>+</button>
@@ -514,6 +512,7 @@ const ProductDetails = () => {
                                     <Button
                                         disabled={product.Stock < 1 ? true : false}
                                         onClick={addToCartHandler}
+                                        variant="contained"
                                     >
                                         Add to Cart
                                     </Button>
