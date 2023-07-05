@@ -8,6 +8,7 @@ import ProductDetails from './component/Product/ProductDetails.js';
 import Products from "./component/Product/Products.js";
 import Search from './component/Product/Search';
 import LoginSignUp from './component/layout/User/LoginSignUp';
+import Cart from './component/Cart/Cart';
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,8 @@ function App() {
           <Route path="/search" element={<Search />} />
 
           <Route path='/login' element={<LoginSignUp />} />
+
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>
