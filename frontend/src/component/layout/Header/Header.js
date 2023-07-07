@@ -42,9 +42,10 @@ const Header = () => {
     return (
         <>
             <Box display="flex" justifyContent="flex-end" p={2}>
+
                 <Stack direction="row" spacing={2}>
                     <Link to="/search"><Search /></Link>
-                    <Link to="/"><ShoppingCart /></Link>
+                    <Link to="/cart"><ShoppingCart /></Link>
                     <Link to="/login"><AccountCircle /></Link>
                 </Stack>
             </Box>
