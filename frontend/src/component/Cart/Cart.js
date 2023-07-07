@@ -1,5 +1,4 @@
 import React from 'react'
-import "./Cart.css"
 import CartItemCard from './CartItemCard'
 import { makeStyles } from '@mui/styles';
 import { Box, Button, Typography } from '@mui/material';
