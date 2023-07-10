@@ -414,7 +414,7 @@ const LoginSignUp = ({ location }) => {
                   />
                 </Box>
 
-                {/* <Box id="registerImage" display="flex" alignItems="center" justifyContent="center">
+                <Box id="registerImage" display="flex" alignItems="center" justifyContent="center">
                   <img className={classes.registerImage_img} src={avatarPreview} alt="Avatar Preview" />
                   <input
                     type="file"
@@ -423,7 +423,7 @@ const LoginSignUp = ({ location }) => {
                     onChange={registerDataChange}
                     className={classes.registerImage_input_fileSelectorButton}
                   />
-                </Box> */}
+                </Box>
                 <input type="submit" value="Register" className="signUpBtn" />
               </form>
             </Box>

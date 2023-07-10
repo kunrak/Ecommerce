@@ -2,8 +2,11 @@ import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
 import { AccountCircle, Search, ShoppingCart } from "@mui/icons-material";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import { useEffect } from "react";
 
 const options = {
     burgerColorHover: "#eb4034",
@@ -39,11 +42,26 @@ const options = {
 };
 
 const Header = () => {
+    const { i18n, t } = useTranslation(["home"]);
+
+    useEffect(() => {
+        if (localStorage.getItem("i18nextLng")?.length > 2) {
+            i18next.changeLanguage("en");
+        }
+    }, []);
+
+    const handleLanguageChange = (e) => {
+        i18n.changeLanguage(e.target.value);
+    }
+
     return (
         <>
             <Box display="flex" justifyContent="flex-end" p={2}>
-
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={2} >
+                    <select onChange={handleLanguageChange}>
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                    </select>
                     <Link to="/search"><Search /></Link>
                     <Link to="/cart"><ShoppingCart /></Link>
                     <Link to="/login"><AccountCircle /></Link>

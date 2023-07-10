@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './component/layout/Header/Header'
 import Footer from './component/layout/Footer/Footer'
@@ -20,22 +20,24 @@ function App() {
   }, []);
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route exact path="/products" element={<Products />} />
-          <Route path="/products/:keyword" element={<Products />} />
+      <Suspense fallback={null}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route exact path="/products" element={<Products />} />
+            <Route path="/products/:keyword" element={<Products />} />
 
-          <Route path="/search" element={<Search />} />
+            <Route path="/search" element={<Search />} />
 
-          <Route path='/login' element={<LoginSignUp />} />
+            <Route path='/login' element={<LoginSignUp />} />
 
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </Suspense>
     </>
   )
 }
