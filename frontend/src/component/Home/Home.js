@@ -7,6 +7,7 @@ import ProductCard from "./ProductCard";
 import Loader from "../layout/Loader/Loader.js";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     banner: {
@@ -82,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Home = () => {
+    const { t } = useTranslation(["home"]);
     const classes = useStyles();
 
     const alert = useAlert();
@@ -103,12 +105,12 @@ const Home = () => {
             ) : (
                 <>
                     <div className={classes.banner}>
-                        <p>Welcome to Ecommerce</p>
-                        <h1>FIND AMAZING PRODUCTS BELOW</h1>
+                        <p>{t("welcomeMsg")}</p>
+                        <h1>{t("headingTitle")}</h1>
 
                         <a href="#container">
                             <button>
-                                Scroll <CgMouse />
+                                {t("buttonText")} <CgMouse />
                             </button>
                         </a>
                     </div>
