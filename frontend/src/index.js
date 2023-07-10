@@ -8,6 +8,7 @@ import "./i18n";
 
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import ErrorBoundary from "./ErrorBounday";
 
 const options = {
   timeout: 5000,
@@ -16,10 +17,12 @@ const options = {
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <AlertProvider template={AlertTemplate} {...options}>
-      <App />
-    </AlertProvider>
-  </Provider>,
+  <ErrorBoundary fallback="There was an error">
+    <Provider store={store}>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <App />
+      </AlertProvider>
+    </Provider>
+  </ErrorBoundary>,
   document.getElementById("root")
 );
