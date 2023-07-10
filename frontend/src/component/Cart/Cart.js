@@ -252,7 +252,10 @@ function Cart() {
                         <Box></Box>
                         <Box className={classes.cartGrossProfitBox}>
                             <p>Gross Total</p>
-                            <p>{`$600`}</p>
+                            <p>{`$${cartItems.reduce(
+                                (acc, item) => acc + item.quantity * item.price,
+                                0
+                            )}`}</p>
                         </Box>
                         <Box></Box>
                         <Box className={classes.checkOutBtn}>
