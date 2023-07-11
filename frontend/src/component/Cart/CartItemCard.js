@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./CartItemCard.css"
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({

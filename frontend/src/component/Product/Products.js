@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
@@ -8,6 +7,114 @@ import Pagination from "react-js-pagination";
 import { Slider, Typography } from '@mui/material';
 import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+    productsHeading: {
+        margin: "2vmax auto",
+        width: "15vw",
+        borderBottom: "1px solid rgba(0, 0, 0, 0.171)",
+        padding: "2vmax",
+        color: "rgba(0, 0, 0, 0.678)",
+        fontFamily: "Roboto",
+        fontWeight: 500,
+        fontSize: "1.5vmax",
+        textAlign: "center",
+    },
+    products: {
+        display: "flex",
+        flexWrap: "wrap",
+        padding: "0 5vmax",
+        justifyContent: "center",
+        minHeight: "30vh",
+    },
+    paginationBox: {
+        display: "flex",
+        justifyContent: "center",
+        margin: "6vmax",
+    },
+    pagination: {
+        display: "flex",
+        justifyContent: "center",
+        padding: 0,
+    },
+    pageItem: {
+        backgroundColor: "rgb(255, 255, 255)",
+        listStyle: "none",
+        border: "1px solid rgba(0, 0, 0, 0.178)",
+        padding: "1vmax 1.5vmax",
+        transition: "all 0.3s",
+        cursor: "pointer",
+        "&:first-child": {
+            borderRadius: "5px 0 0 5px",
+        },
+        "&:last-child": {
+            borderRadius: "0 5px 5px 0",
+        },
+        "&:hover": {
+            backgroundColor: "rgb(230, 230, 230)",
+            "& .page-link": {
+                color: "rgb(0, 0, 0)",
+            },
+        },
+    },
+    pageLink: {
+        textDecoration: "none",
+        fontFamily: "Roboto",
+        fontWeight: 300,
+        fontSize: "0.7vmax",
+        color: "rgb(80, 80, 80)",
+        transition: "all 0.3s",
+    },
+    pageItemActive: {
+        backgroundColor: "tomato",
+    },
+    pageLinkActive: {
+        color: "white",
+    },
+    filterBox: {
+        width: "10vmax",
+        position: "absolute",
+        top: "10vmax",
+        left: "4vmax",
+        "& > fieldset": {
+            border: "1px solid rgba(0, 0, 0, 0.329)",
+        },
+    },
+    categoryBox: {
+        padding: "0%",
+    },
+    categoryLink: {
+        listStyle: "none",
+        color: "rgba(0, 0, 0, 0.61)",
+        fontFamily: "Roboto",
+        fontWeight: 400,
+        fontSize: "0.8vmax",
+        margin: "0.4vmax",
+        cursor: "pointer",
+        transition: "all 0.5s",
+        "&:hover": {
+            color: "tomato",
+        },
+    },
+    "@media screen and (max-width: 600px)": {
+        filterBox: {
+            width: "20vmax",
+            position: "static",
+            margin: "auto",
+        },
+        pageLink: {
+            fontFamily: "Roboto",
+            fontWeight: 300,
+            fontSize: "1.7vmax",
+        },
+        categoryLink: {
+            fontFamily: "Roboto",
+            fontWeight: 400,
+            fontSize: "1.8vmax",
+        },
+    },
+}));
 
 const categories = [
     "Laptop",
@@ -22,6 +129,7 @@ const categories = [
 const Products = () => {
     const keyword = useParams();
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     const alert = useAlert();
 
@@ -63,16 +171,16 @@ const Products = () => {
                 <Loader />
             ) : (
                 <>
-                    <h2 className="productsHeading">Products</h2>
+                    <h2 className={classes.productsHeading}>Products</h2>
 
-                    <div className="products">
+                    <div className={classes.products}>
                         {products &&
                             products.map((product) => (
                                 <ProductCard key={product._id} product={product} />
                             ))}
                     </div>
 
-                    <div className="filterBox">
+                    <div className={classes.filterBox}>
                         <Typography>Price</Typography>
                         <Slider
                             value={price}
@@ -84,10 +192,10 @@ const Products = () => {
                         />
 
                         <Typography>Categories</Typography>
-                        <ul className="categoryBox">
+                        <ul className={classes.categoryBox}>
                             {categories.map((category) => (
                                 <li
-                                    className="category-link"
+                                    className={classes.categoryLink}
                                     key={category}
                                     onClick={() => setCategory(category)}
                                 >
@@ -111,7 +219,7 @@ const Products = () => {
                         </fieldset>
                     </div>
                     {resultPerPage < count && (
-                        <div className="paginationBox">
+                        <div className={classes.paginationBox}>
                             <Pagination
                                 activePage={currentPage}
                                 itemsCountPerPage={resultPerPage}

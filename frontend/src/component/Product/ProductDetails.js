@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
     clearErrors,
@@ -481,7 +480,7 @@ const ProductDetails = () => {
                             {product.images &&
                                 product.images.map((item, i) => (
                                     <img
-                                        className="CarouselImage"
+                                        className={classes.CarouselImage}
                                         key={item.url}
                                         src={item.url}
                                         alt={`${i} Slide`}

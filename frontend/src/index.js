@@ -8,7 +8,7 @@ import "./i18n";
 
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import ErrorBoundary from "./ErrorBounday";
+import ErrorBoundary from "./ErrorBoundary";
 
 const options = {
   timeout: 5000,
