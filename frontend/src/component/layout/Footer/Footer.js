@@ -4,53 +4,71 @@ import { makeStyles } from '@mui/styles';
 import playStore from "../../../images/playstore.png";
 import appStore from "../../../images/Appstore.png";
 import { useTranslation } from "react-i18next";
+import { textAlign } from '@mui/system';
 
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        spacing: 2,
         backgroundColor: "rgb(34, 33, 33)",
         marginTop: "10vmax",
         width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            padding: 12,
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center"
+        }
     },
     leftFooter: {
-        width: "20%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
             width: "100%",
             padding: 12,
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center"
         }
     },
     midFooter: {
-        width: "60%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
             width: "100%",
             padding: 12,
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center"
         }
     },
     rightFooter: {
-        width: "20%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
             width: "100%",
             padding: 12,
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center"
         }
     },
     midPara: {
-        maxWidth: "60%",
+        maxWidth: "100%",
         margin: 2,
     }
 }))
@@ -60,7 +78,7 @@ function Footer() {
     const { t } = useTranslation(["footer"]);
 
     return (
-        <Stack direction="row" className={classes.footer} >
+        <Box className={classes.footer} >
             <Box className={classes.leftFooter} textAlign="center">
                 <h4 style={{ color: "white" }}>{t("downloadText")}</h4>
                 <h5 style={{ color: "white" }}>{t("avialabilityText")}</h5>
@@ -89,7 +107,7 @@ function Footer() {
                     <a style={{ textDecoration: 'none', color: "white" }} href="http://facebook.com/">{t("facebook")}</a>
                 </Stack>
             </Box>
-        </Stack >
+        </Box >
     )
 }
 
