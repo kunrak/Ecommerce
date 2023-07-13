@@ -10,6 +10,11 @@ import Search from './component/Product/Search';
 import LoginSignUp from './component/layout/User/LoginSignUp';
 import Cart from './component/Cart/Cart';
 import ErrorBoundary from './ErrorBoundary';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  // define your theme options here
+});
 
 function App() {
   useEffect(() => {
@@ -22,24 +27,26 @@ function App() {
   return (
     <>
       <ErrorBoundary fallback="There is an error">
-        <Suspense fallback={null}>
-          <BrowserRouter>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route exact path="/products" element={<Products />} />
-              <Route path="/products/:keyword" element={<Products />} />
+        <ThemeProvider theme={theme}>
+          <Suspense fallback={null}>
+            <BrowserRouter>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route exact path="/products" element={<Products />} />
+                <Route path="/products/:keyword" element={<Products />} />
 
-              <Route path="/search" element={<Search />} />
+                <Route path="/search" element={<Search />} />
 
-              <Route path='/login' element={<LoginSignUp />} />
+                <Route path='/login' element={<LoginSignUp />} />
 
-              <Route path="/cart" element={<Cart />} />
-            </Routes>
-            <Footer />
-          </BrowserRouter>
-        </Suspense>
+                <Route path="/cart" element={<Cart />} />
+              </Routes>
+              <Footer />
+            </BrowserRouter>
+          </Suspense>
+        </ThemeProvider>
       </ErrorBoundary>
     </>
   )

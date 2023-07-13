@@ -6,11 +6,12 @@ import appStore from "../../../images/Appstore.png";
 import { useTranslation } from "react-i18next";
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     footer: {
         spacing: 2,
         backgroundColor: "rgb(34, 33, 33)",
-        marginTop: 120,
+        marginTop: "10vmax",
+        width: "100%",
     },
     leftFooter: {
         width: "20%",
@@ -18,7 +19,11 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: 24
+        padding: 24,
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            padding: 12,
+        }
     },
     midFooter: {
         width: "60%",
@@ -26,7 +31,11 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: 24
+        padding: 24,
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            padding: 12,
+        }
     },
     rightFooter: {
         width: "20%",
@@ -34,13 +43,17 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: 24
+        padding: 24,
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            padding: 12,
+        }
     },
     midPara: {
         maxWidth: "60%",
         margin: 2,
     }
-})
+}))
 
 function Footer() {
     const classes = useStyles();
