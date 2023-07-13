@@ -42,7 +42,7 @@ const options = {
 };
 
 const Header = () => {
-    const { i18n, t } = useTranslation(["home"]);
+    const { i18n } = useTranslation(["home"]);
 
     useEffect(() => {
         if (localStorage.getItem("i18nextLng")?.length > 2) {

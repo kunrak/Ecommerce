@@ -4,18 +4,16 @@ import { makeStyles } from '@mui/styles';
 import playStore from "../../../images/playstore.png";
 import appStore from "../../../images/Appstore.png";
 import { useTranslation } from "react-i18next";
-import { textAlign } from '@mui/system';
 
 
 const useStyles = makeStyles((theme) => ({
     footer: {
         backgroundColor: "rgb(34, 33, 33)",
         marginTop: "10vmax",
-        width: "100%",
         display: "flex",
         flexDirection: "row",
+        justifyContent: "space-between",
         [theme.breakpoints.down('sm')]: {
-            width: "100%",
             padding: 12,
             display: "flex",
             flexDirection: "column",
@@ -23,14 +21,12 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     leftFooter: {
-        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
         [theme.breakpoints.down('xs')]: {
-            width: "100%",
             padding: 12,
             display: "flex",
             flexDirection: "column",
@@ -38,14 +34,12 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     midFooter: {
-        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
         [theme.breakpoints.down('xs')]: {
-            width: "100%",
             padding: 12,
             display: "flex",
             flexDirection: "column",
@@ -53,14 +47,12 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     rightFooter: {
-        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
         [theme.breakpoints.down('xs')]: {
-            width: "100%",
             padding: 12,
             display: "flex",
             flexDirection: "column",
@@ -68,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     midPara: {
-        maxWidth: "100%",
         margin: 2,
     }
 }))

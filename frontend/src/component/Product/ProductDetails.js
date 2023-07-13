@@ -23,22 +23,16 @@ import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     ProductDetails: {
-        backgroundColor: '#fff',
-        width: '100vw',
-        maxWidth: '100%',
         padding: '6vmax',
-        boxSizing: 'border-box',
         display: 'flex',
     },
     productDetailsDiv: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
         alignItems: 'center',
+        justifyContent: 'center',
         padding: '2vmax',
-        boxSizing: 'border-box',
-        border: '1px solid #fff',
         '&:last-child': {
             alignItems: 'flex-start',
         },

@@ -11,12 +11,15 @@ import LoginSignUp from './component/layout/User/LoginSignUp';
 import Cart from './component/Cart/Cart';
 import ErrorBoundary from './ErrorBoundary';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+// import { useMediaQuery } from '@mui/material';
 
 const theme = createTheme({
   // define your theme options here
 });
 
 function App() {
+  // const isMobile = useMediaQuery('(max-width:600px)');
+
   useEffect(() => {
     WebFont.load({
       google: {
@@ -44,6 +47,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
               </Routes>
               <Footer />
+              {/* {isMobile ? <Footer /> : null} */}
             </BrowserRouter>
           </Suspense>
         </ThemeProvider>

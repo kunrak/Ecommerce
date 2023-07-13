@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Rating } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -42,6 +42,12 @@ const useStyles = makeStyles({
         margin: '0.5vmax',
         font: '300 0.7vmax "Roboto"',
     },
+    productDiv: {
+        margin: '0.5vmax',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    }
 })
 
 const ProductCard = ({ product }) => {
@@ -56,14 +62,17 @@ const ProductCard = ({ product }) => {
         <Link className={classes.productCard} to={`product/${product._id}`}>
             <img src={product.images[0].url} alt={product.name} />
             <p>{product.name}</p>
-            <div>
+            <Rating {...options} />
+            <span className={classes.productCardSpan}>
+                ({product.numOfReviews} Reviews)
+            </span>
+            {/* <div>
                 <Rating {...options} />{" "}
-                <span className={classes.productCardSpan}>
-                    {" "}
+                <Box className={classes.productCardSpan}>
                     ({product.numOfReviews} Reviews)
-                </span>
-            </div>
-            <span>{`₹${product.price}`}</span>
+                </Box>
+            </div> */}
+            <Box>{`₹${product.price}`}</Box>
         </Link >
     );
 };

@@ -259,7 +259,7 @@ function Cart() {
                         </Box>
                         <Box></Box>
                         <Box className={classes.checkOutBtn}>
-                            <Button className={classes.checkOutBtnButton}>Check Out</Button>
+                            <Button variant='contained' sx={{ backgroundColor: "green" }} className={classes.checkOutBtnButton}>Check Out</Button>
                         </Box>
                     </Box>
                 </Box>
