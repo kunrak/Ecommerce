@@ -25,6 +25,13 @@ const useStyles = makeStyles({
     top: '0%',
     left: 0,
   },
+  LoginSignUpBox: {
+    backgroundColor: 'white',
+    width: '25vw',
+    height: '70vh',
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+  },
   login_signUp_toggle: {
     display: 'flex',
     height: '3vmax',
@@ -125,26 +132,6 @@ const useStyles = makeStyles({
   registerImage_img: {
     width: '3vmax',
     borderRadius: '100%',
-  },
-  registerImage_input: {
-    display: 'flex',
-    padding: '0%',
-  },
-  registerImage_input_fileSelectorButton: {
-    cursor: 'pointer',
-    width: '100%',
-    zIndex: 2,
-    height: '5vh',
-    border: 'none',
-    margin: '0%',
-    font: '400 0.8vmax cursive',
-    transition: 'all 0.5s',
-    padding: '0 1vmax',
-    color: 'rgba(0, 0, 0, 0.623)',
-    backgroundColor: 'rgb(255, 255, 255)',
-    '&:hover': {
-      backgroundColor: 'rgb(235, 235, 235)',
-    },
   },
   loginBtn: {
     border: 'none',
@@ -333,13 +320,13 @@ const LoginSignUp = ({ history, location }) => {
       ) : (
         <>
           <Box className={classes.LoginSignUpContainer}>
-            <Box className="LoginSignUpBox">
+            <Box className={classes.LoginSignUpBox}>
               <Box>
                 <Box className={classes.login_signUp_toggle}>
                   <p className={classes.login_signUp_toggle_p} onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
                   <p className={classes.login_signUp_toggle_p} onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
                 </Box>
-                <button ref={switcherTab}></button>
+                <button className={classes.LoginSignUpBox_div_Button} ref={switcherTab}></button>
               </Box>
               <form className={classes.loginForm} ref={loginTab} onSubmit={loginSubmit}>
                 <Box className={classes.loginForm_div}>
@@ -409,13 +396,13 @@ const LoginSignUp = ({ history, location }) => {
                 <Box display="flex" justifyContent="center" alignItems="center" id="registerImage">
                   <img className={classes.registerImage_img} src={avatarPreview} alt="Avatar Preview" />
                   <input
-                    className={classes.registerImage_input_fileSelectorButton} type="file"
+                    type="file"
                     name="avatar"
                     accept="image/*"
                     onChange={registerDataChange}
                   />
                 </Box>
-                <input type="submit" value="Register" className="signUpBtn" />
+                <input type="submit" value="Register" className={classes.signUpBtn} />
               </form>
             </Box>
           </Box>
