@@ -1,7 +1,7 @@
 import React from 'react'
 import CartItemCard from './CartItemCard'
 import { makeStyles } from '@mui/styles';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction';
 import { RemoveShoppingCart } from '@mui/icons-material';
@@ -258,9 +258,11 @@ function Cart() {
                             )}`}</p>
                         </Box>
                         <Box></Box>
-                        <Box className={classes.checkOutBtn}>
-                            <Button variant='contained' sx={{ backgroundColor: "green" }} className={classes.checkOutBtnButton}>Check Out</Button>
-                        </Box>
+                        <Container>
+                            <Box className={classes.checkOutBtn} mr={5}>
+                                <Button variant='contained' className={classes.checkOutBtnButton}>Check Out</Button>
+                            </Box>
+                        </Container>
                     </Box>
                 </Box>
             )

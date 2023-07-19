@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { useEffect } from "react";
+import { useTheme, useMediaQuery } from '@mui/material';
 
 const options = {
     burgerColorHover: "#eb4034",
@@ -54,20 +55,27 @@ const Header = () => {
         i18n.changeLanguage(e.target.value);
     }
 
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <>
-            <Box display="flex" justifyContent="flex-end" p={2}>
-                <Stack direction="row" spacing={2} >
-                    <select onChange={handleLanguageChange}>
-                        <option value="en">English</option>
-                        <option value="bn">Bengali</option>
-                    </select>
-                    <Link to="/search"><Search /></Link>
-                    <Link to="/cart"><ShoppingCart /></Link>
-                    <Link to="/login"><AccountCircle /></Link>
-                </Stack>
-            </Box>
-            <ReactNavbar {...options} />
+            {isMobile && (
+                <>
+                    <Box display="flex" justifyContent="flex-end" p={2}>
+                        <Stack direction="row" spacing={2} >
+                            <select onChange={handleLanguageChange}>
+                                <option value="en">English</option>
+                                <option value="bn">Bengali</option>
+                            </select>
+                            <Link to="/search"><Search /></Link>
+                            <Link to="/cart"><ShoppingCart /></Link>
+                            <Link to="/login"><AccountCircle /></Link>
+                        </Stack>
+                    </Box>
+                    <ReactNavbar {...options} />
+                </>
+            )}
         </>
     );
 };

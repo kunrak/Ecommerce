@@ -1,15 +1,18 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import FaceIcon from "@mui/icons-material/Face";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../../actions/userAction";
 import { useAlert } from "react-alert";
-import { Face, LockOpen, MailOutline } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
-import { Box, Button } from "@mui/material";
+import { Box, Input, InputAdornment, TextField } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   LoginSignUpContainer: {
     width: '100vw',
     height: '100vh',
@@ -21,13 +24,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     top: '0%',
     left: 0,
-  },
-  LoginSignUpBox: {
-    backgroundColor: 'white',
-    width: '25vw',
-    height: '70vh',
-    boxSizing: 'border-box',
-    overflow: 'hidden',
   },
   login_signUp_toggle: {
     display: 'flex',
@@ -236,10 +232,9 @@ const useStyles = makeStyles((theme) => ({
       padding: '1.8vmax',
     },
   },
-}));
+});
 
-const LoginSignUp = ({ location }) => {
-  const classes = useStyles();
+const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -264,7 +259,7 @@ const LoginSignUp = ({ location }) => {
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const loginSubmit = (e) => {
@@ -281,7 +276,6 @@ const LoginSignUp = ({ location }) => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("Sign Up Form Submitted")
     dispatch(register(myForm));
   };
 
@@ -311,7 +305,7 @@ const LoginSignUp = ({ location }) => {
     if (isAuthenticated) {
       navigate("/account");
     }
-  }, [dispatch, error, alert, navigate, isAuthenticated]);
+  }, [dispatch, error, alert, history, isAuthenticated, navigate]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -330,6 +324,8 @@ const LoginSignUp = ({ location }) => {
     }
   };
 
+  const classes = useStyles();
+
   return (
     <>
       {loading ? (
@@ -337,91 +333,86 @@ const LoginSignUp = ({ location }) => {
       ) : (
         <>
           <Box className={classes.LoginSignUpContainer}>
-            <Box className={classes.LoginSignUpBox}>
+            <Box className="LoginSignUpBox">
               <Box>
                 <Box className={classes.login_signUp_toggle}>
                   <p className={classes.login_signUp_toggle_p} onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
                   <p className={classes.login_signUp_toggle_p} onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
                 </Box>
-                <Button ref={switcherTab}></Button>
+                <button ref={switcherTab}></button>
               </Box>
               <form className={classes.loginForm} ref={loginTab} onSubmit={loginSubmit}>
                 <Box className={classes.loginForm_div}>
-                  <MailOutline className={classes.loginForm_div_svg} />
+                  <MailOutlineIcon className={classes.loginForm_div_svg} />
                   <input
+                    className={classes.loginForm_div_input}
                     type="email"
                     placeholder="Email"
                     required
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
-                    className={classes.loginForm_div_input}
                   />
                 </Box>
                 <Box className={classes.loginForm_div}>
-                  <LockOpen className={classes.loginForm_div_svg} />
+                  <LockOpenIcon className={classes.loginForm_div_svg} />
                   <input
+                    className={classes.loginForm_div_input}
                     type="password"
                     placeholder="Password"
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
-                    className={classes.loginForm_div_input}
                   />
                 </Box>
-                <Link to="/password/forgot">Forget Password ?</Link>
                 <input type="submit" value="Login" className={classes.loginBtn} />
               </form>
               <form
-                className="signUpForm"
+                className={classes.signUpForm}
                 ref={registerTab}
                 encType="multipart/form-data"
                 onSubmit={registerSubmit}
               >
                 <Box className={classes.signUpForm_div}>
-                  <Face className={classes.signUpForm_div_svg} />
                   <input
+                    className={classes.signUpForm_div_input}
                     type="text"
                     placeholder="Name"
                     required
                     name="name"
                     value={name}
                     onChange={registerDataChange}
-                    className={classes.signUpForm_div_input}
                   />
                 </Box>
                 <Box className={classes.signUpForm_div}>
-                  <MailOutline className={classes.signUpForm_div_svg} />
                   <input
+                    className={classes.signUpForm_div_input}
                     type="email"
                     placeholder="Email"
                     required
                     name="email"
                     value={email}
                     onChange={registerDataChange}
-                    className={classes.signUpForm_div_input}
                   />
                 </Box>
                 <Box className={classes.signUpForm_div}>
-                  <LockOpen className={classes.signUpForm_div_svg} />
                   <input
+                    className={classes.signUpForm_div_input}
                     type="password"
                     placeholder="Password"
                     required
                     name="password"
                     value={password}
                     onChange={registerDataChange}
-                    className={classes.signUpForm_div_input}
                   />
                 </Box>
 
-                <Box id="registerImage" display="flex" alignItems="center" justifyContent="center">
+                <Box display="flex" justifyContent="center" alignItems="center" id="registerImage">
                   <img className={classes.registerImage_img} src={avatarPreview} alt="Avatar Preview" />
                   <input
-                    type="file"
+                    className={classes.registerImage_input_fileSelectorButton} type="file"
                     name="avatar"
                     accept="image/*"
                     onChange={registerDataChange}
-                    className={classes.registerImage_input_fileSelectorButton}
                   />
                 </Box>
                 <input type="submit" value="Register" className="signUpBtn" />

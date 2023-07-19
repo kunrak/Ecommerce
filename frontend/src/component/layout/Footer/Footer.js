@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
             display: "flex",
             flexDirection: "column",
             textAlign: "center"
+        },
+        [theme.breakpoints.down('md')]: {
+            padding: 12,
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center"
         }
     },
     leftFooter: {
