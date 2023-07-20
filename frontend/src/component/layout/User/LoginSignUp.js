@@ -393,7 +393,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </Box>
 
-                <Box display="flex" justifyContent="center" alignItems="center" id="registerImage">
+                {/* <Box display="flex" justifyContent="center" alignItems="center" id="registerImage">
                   <img className={classes.registerImage_img} src={avatarPreview} alt="Avatar Preview" />
                   <input
                     type="file"
@@ -401,7 +401,7 @@ const LoginSignUp = ({ history, location }) => {
                     accept="image/*"
                     onChange={registerDataChange}
                   />
-                </Box>
+                </Box> */}
                 <input type="submit" value="Register" className={classes.signUpBtn} />
               </form>
             </Box>
