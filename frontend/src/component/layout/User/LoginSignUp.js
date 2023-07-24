@@ -1,16 +1,14 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../Loader/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import FaceIcon from "@mui/icons-material/Face";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../../actions/userAction";
 import { useAlert } from "react-alert";
 import { makeStyles } from "@mui/styles";
-import { Box, Input, InputAdornment, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 const useStyles = makeStyles({
   LoginSignUpContainer: {

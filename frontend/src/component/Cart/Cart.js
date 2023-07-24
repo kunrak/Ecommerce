@@ -5,7 +5,7 @@ import { Box, Button, Container, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction';
 import { RemoveShoppingCart } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     emptyCart: {
@@ -196,6 +196,7 @@ function Cart() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
+    const navigate = useNavigate();
 
     const increaseQuantity = (id, quantity, stock) => {
         const newQty = quantity + 1;
@@ -217,6 +218,10 @@ function Cart() {
 
     const deleteCartItems = (id) => {
         dispatch(removeItemsFromCart(id));
+    }
+
+    const checkoutHandler = () => {
+        navigate("/login?redirect=shipping");
     }
 
     return (
@@ -260,7 +265,7 @@ function Cart() {
                         <Box></Box>
                         <Container>
                             <Box className={classes.checkOutBtn} mr={5}>
-                                <Button variant='contained' className={classes.checkOutBtnButton}>Check Out</Button>
+                                <Button variant='contained' className={classes.checkOutBtnButton} onClick={checkoutHandler}>Check Out</Button>
                             </Box>
                         </Container>
                     </Box>
