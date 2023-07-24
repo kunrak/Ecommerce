@@ -26,22 +26,34 @@ exports.getAllProducts = catchAsyncErrors(async (req, res) => {
         .search()
         .filter();
 
-    // let products = await apiFeature.query;
+    let products = await apiFeature.query;
 
-    // let filteredProductsCount = products.length;
+    let filteredProductsCount = products.length;
 
-    // apiFeature.pagination(resultPerPage);
+    apiFeature.pagination(resultPerPage);
 
-    const products = await apiFeature.query;
+    products = await apiFeature.query;
 
     res.status(200).json({
         success: true,
         products,
         productsCount,
         resultPerPage,
-        // filteredProductsCount
+        filteredProductsCount
     })
 })
+
+
+// Get All Product (Admin)
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+    const products = await Product.find();
+
+    res.status(200).json({
+        success: true,
+        products,
+    });
+});
+
 
 //Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
@@ -57,15 +69,13 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
-//Update product
+
+//Update product -- Admin
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
 
     if (!product) {
-        return res.status(500).json({
-            success: false,
-            message: "Product not found"
-        })
+        return next(new ErrorHander("Product not found", 404));
     }
 
     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
@@ -156,7 +166,7 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
 })
 
 
-//Delete Review
+// Delete Review
 exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.query.productId);
 
@@ -165,30 +175,40 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     }
 
     const reviews = product.reviews.filter(
-        (rev) => rev._id.toString() !== req.user.id.toString()
-    )
+        (rev) => rev._id.toString() !== req.query.id.toString()
+    );
 
     let avg = 0;
 
     reviews.forEach((rev) => {
         avg += rev.rating;
-    })
+    });
 
-    const ratings = avg / reviews.length;
+    let ratings = 0;
+
+    if (reviews.length === 0) {
+        ratings = 0;
+    } else {
+        ratings = avg / reviews.length;
+    }
 
     const numOfReviews = reviews.length;
 
-    await Product.findByIdAndUpdate(req.query.productId, {
-        reviews,
-        ratings,
-        numOfReviews
-    }, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false
-    })
+    await Product.findByIdAndUpdate(
+        req.query.productId,
+        {
+            reviews,
+            ratings,
+            numOfReviews,
+        },
+        {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false,
+        }
+    );
 
     res.status(200).json({
-        success: true
-    })
-})
+        success: true,
+    });
+});
