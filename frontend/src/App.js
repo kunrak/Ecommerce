@@ -8,12 +8,20 @@ import ProductDetails from './component/Product/ProductDetails.js';
 import Products from "./component/Product/Products.js";
 import Search from './component/Product/Search';
 import LoginSignUp from './component/layout/User/LoginSignUp';
+import store from "./store";
 import Cart from './component/Cart/Cart';
 import ErrorBoundary from './ErrorBoundary';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './Theme';
+import { loadUser } from './actions/userAction';
+import UserOptions from './component/layout/Header/UserOptions';
+import { useSelector } from 'react-redux';
+import Profile from './component/layout/User/Profile';
+import ProtectedRoute from './component/Route/ProtectedRoute';
 
 function App() {
+
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
   useEffect(() => {
     WebFont.load({
@@ -21,6 +29,8 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
+
+    store.dispatch(loadUser());
   }, []);
   return (
     <>
@@ -29,6 +39,7 @@ function App() {
           <Suspense fallback={null}>
             <BrowserRouter>
               <Header />
+              {isAuthenticated && <UserOptions user={user} />}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
@@ -36,6 +47,10 @@ function App() {
                 <Route path="/products/:keyword" element={<Products />} />
 
                 <Route path="/search" element={<Search />} />
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path='/account' element={<Profile />} />
+                </Route>
 
                 <Route path='/login' element={<LoginSignUp />} />
 

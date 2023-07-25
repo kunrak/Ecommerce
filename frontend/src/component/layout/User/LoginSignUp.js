@@ -250,6 +250,7 @@ const LoginSignUp = ({ history, location }) => {
   const loginSubmit = (e) => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword));
+    navigate("/");
   };
 
   const registerSubmit = (e) => {
@@ -260,7 +261,6 @@ const LoginSignUp = ({ history, location }) => {
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
-    myForm.set("avatar", avatar);
     dispatch(register(myForm));
   };
 
@@ -287,9 +287,6 @@ const LoginSignUp = ({ history, location }) => {
       dispatch(clearErrors());
     }
 
-    if (isAuthenticated) {
-      navigate("/account");
-    }
   }, [dispatch, error, alert, history, isAuthenticated, navigate]);
 
   const switchTabs = (e, tab) => {

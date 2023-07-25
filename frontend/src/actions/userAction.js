@@ -39,7 +39,7 @@ import {
 import axios from "axios";
 
 // Login
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch, getState) => {
     try {
         dispatch({ type: LOGIN_REQUEST });
 
@@ -55,6 +55,8 @@ export const login = (email, password) => async (dispatch) => {
     } catch (error) {
         dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
     }
+    localStorage.setItem("userDetails", JSON.stringify(getState().user.userDetails));
+
 };
 
 // Register

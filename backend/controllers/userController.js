@@ -10,11 +10,11 @@ const cloudinary = require("cloudinary");
 
 //Register a user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: "avatars",
-        width: 150,
-        crop: "scale",
-    });
+    // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    //     folder: "avatars",
+    //     width: 150,
+    //     crop: "scale",
+    // });
 
     const { name, email, password } = req.body;
 
@@ -22,10 +22,10 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         name,
         email,
         password,
-        avatar: {
-            public_id: myCloud.public_id,
-            url: myCloud.secure_url,
-        }
+        // avatar: {
+        //     public_id: myCloud.public_id,
+        //     url: myCloud.secure_url,
+        // }
     })
 
     sendToken(user, 201, res);
@@ -69,45 +69,6 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
         message: "Logged out successfully"
     })
 })
-
-
-// //Forgot Password
-// exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
-//     const user = await User.findOne({ email: req.body.email });
-
-//     if (!user) {
-//         next("User not found", 404);
-//     }
-
-//     //Get ResetPassword Token
-//     const resetToken = user.getResetPasswordToken();
-
-//     await user.save({ validateBeforeSave: false });
-
-//     const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
-
-//     const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it`;
-
-//     try {
-//         await sendEmail({
-//             email: user.email,
-//             subject: `Ecommerce Password Recovery`,
-//             message,
-//         })
-
-//         res.status(200).json({
-//             success: true,
-//             message: `Email sent to ${user.email} successfully`,
-//         })
-//     } catch (error) {
-//         user.resetPasswordToken = undefined;
-//         user.resetPasswordExpires = undefined;
-
-//         await user.save({ validateBeforeSave: false });
-
-//         return next(new ErrorHander(error.message, 500));
-//     }
-// })
 
 
 //Get user details
