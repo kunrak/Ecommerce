@@ -1,4 +1,4 @@
-import { Dashboard, ExitToApp, ListAlt, Person } from '@mui/icons-material'
+import { Dashboard, ExitToApp, Inventory, ListAlt, Person, ShoppingCart } from '@mui/icons-material'
 import { Backdrop, SpeedDial, SpeedDialAction } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import React, { useState } from 'react'
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     speedDial: {
         position: 'fixed',
         right: '3vmax',
-        top: '3vmax',
+        top: '5vmax',
     },
     speedDialIcon: {
         width: 70,
@@ -29,22 +29,20 @@ function UserOptions({ user }) {
     const dispatch = useDispatch();
 
     const options = [
+        { icon: <Dashboard />, name: "Dashboard", func: dashboard },
+        { icon: <Inventory />, name: "Products", func: products },
+        { icon: <ShoppingCart />, name: "Cart", func: cart },
         { icon: <ListAlt />, name: "Orders", func: orders },
         { icon: <Person />, name: "Profile", func: account },
-
         { icon: <ExitToApp />, name: "Logout", func: logoutUser },
     ]
 
-    if (user.role === "admin") {
-        options.unshift({
-            icon: <Dashboard />,
-            name: "Dashboard",
-            func: dashboard,
-        })
-    }
-
     function dashboard() {
         navigate("/")
+    }
+
+    function cart() {
+        navigate("/cart")
     }
 
     function orders() {
@@ -53,6 +51,10 @@ function UserOptions({ user }) {
 
     function account() {
         navigate("/account")
+    }
+
+    function products() {
+        navigate("/products")
     }
 
     function logoutUser() {

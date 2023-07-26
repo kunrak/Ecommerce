@@ -9,6 +9,7 @@ import { clearErrors, login, register } from "../../../actions/userAction";
 import { useAlert } from "react-alert";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles({
   LoginSignUpContainer: {
@@ -219,11 +220,13 @@ const useStyles = makeStyles({
   },
 });
 
-const LoginSignUp = ({ history, location }) => {
+const LoginSignUp = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
   const navigate = useNavigate();
+  const location = useLocation()
+
 
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
@@ -287,7 +290,11 @@ const LoginSignUp = ({ history, location }) => {
       dispatch(clearErrors());
     }
 
-  }, [dispatch, error, alert, history, isAuthenticated, navigate]);
+    if (isAuthenticated) {
+      navigate("/shipping");
+    }
+
+  }, [dispatch, error, alert, isAuthenticated, navigate]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
-import Pagination from "react-js-pagination";
-import { Slider, Typography } from '@mui/material';
+import { Box, Slider, Typography } from '@mui/material';
 import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
@@ -173,14 +172,14 @@ const Products = () => {
                 <>
                     <h2 className={classes.productsHeading}>Products</h2>
 
-                    <div className={classes.products}>
+                    <Box className={classes.products}>
                         {products &&
                             products.map((product) => (
                                 <ProductCard key={product._id} product={product} />
                             ))}
-                    </div>
+                    </Box>
 
-                    <div className={classes.filterBox}>
+                    <Box className={classes.filterBox}>
                         <Typography>Price</Typography>
                         <Slider
                             value={price}
@@ -217,25 +216,7 @@ const Products = () => {
                                 max={5}
                             />
                         </fieldset>
-                    </div>
-                    {resultPerPage < count && (
-                        <div className={classes.paginationBox}>
-                            <Pagination
-                                activePage={currentPage}
-                                itemsCountPerPage={resultPerPage}
-                                totalItemsCount={productsCount}
-                                onChange={setCurrentPageNo}
-                                nextPageText="Next"
-                                prevPageText="Prev"
-                                firstPageText="1st"
-                                lastPageText="Last"
-                                itemClass="page-item"
-                                linkClass="page-link"
-                                activeClass="pageItemActive"
-                                activeLinkClass="pageLinkActive"
-                            />
-                        </div>
-                    )}
+                    </Box>
                 </>
             )}
         </>

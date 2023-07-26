@@ -18,6 +18,7 @@ import UserOptions from './component/layout/Header/UserOptions';
 import { useSelector } from 'react-redux';
 import Profile from './component/layout/User/Profile';
 import ProtectedRoute from './component/Route/ProtectedRoute';
+import Shipping from './component/Cart/Shipping';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
 
                 <Route element={<ProtectedRoute />}>
                   <Route path='/account' element={<Profile />} />
+                  <Route path="/shipping" element={<Shipping />} />
                 </Route>
 
                 <Route path='/login' element={<LoginSignUp />} />
