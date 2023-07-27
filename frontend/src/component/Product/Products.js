@@ -141,19 +141,19 @@ const Products = () => {
         products,
         loading,
         error,
-        productsCount,
-        resultPerPage,
+        // productsCount,
+        // resultPerPage,
         filteredProductsCount,
     } = useSelector((state) => state.products);
 
-    const setCurrentPageNo = (e) => {
-        setCurrentPage(e);
-    };
+    // const setCurrentPageNo = (e) => {
+    //     setCurrentPage(e);
+    // };
 
     const priceHandler = (event, newPrice) => {
         setPrice(newPrice);
     };
-    let count = filteredProductsCount;
+    // let count = filteredProductsCount;
 
     useEffect(() => {
         if (error) {

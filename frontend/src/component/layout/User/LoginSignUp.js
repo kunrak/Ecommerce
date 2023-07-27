@@ -9,7 +9,6 @@ import { clearErrors, login, register } from "../../../actions/userAction";
 import { useAlert } from "react-alert";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/material";
-import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles({
   LoginSignUpContainer: {
@@ -225,7 +224,6 @@ const LoginSignUp = () => {
   const alert = useAlert();
 
   const navigate = useNavigate();
-  const location = useLocation()
 
 
   const { error, loading, isAuthenticated } = useSelector(
@@ -247,8 +245,8 @@ const LoginSignUp = () => {
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState("/Profile.png");
-  const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+  // const [avatar, setAvatar] = useState("/Profile.png");
+  // const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -269,16 +267,16 @@ const LoginSignUp = () => {
 
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
-      const reader = new FileReader();
+      // const reader = new FileReader();
 
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatarPreview(reader.result);
-          setAvatar(reader.result);
-        }
-      };
+      // reader.onload = () => {
+      //   if (reader.readyState === 2) {
+      //     setAvatarPreview(reader.result);
+      //     setAvatar(reader.result);
+      //   }
+      // };
 
-      reader.readAsDataURL(e.target.files[0]);
+      // reader.readAsDataURL(e.target.files[0]);
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });
     }

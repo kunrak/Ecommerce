@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { useEffect } from "react";
 import { Box } from "@mui/material";
 import Loader from "../Loader/Loader";
 import { makeStyles } from "@mui/styles";
