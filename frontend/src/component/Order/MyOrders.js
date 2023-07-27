@@ -1,9 +1,9 @@
 import React from 'react'
 
-function MyOrders() {
+function MyOrder() {
     return (
-        <div>MyOrders</div>
+        <div>MyOrder</div>
     )
 }
 
-export default MyOrders
+export default MyOrder

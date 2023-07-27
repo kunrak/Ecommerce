@@ -58,7 +58,6 @@ function App() {
           <Suspense fallback={null}>
             <BrowserRouter>
               <Header />
-              {isAuthenticated && <UserOptions user={user} />}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
