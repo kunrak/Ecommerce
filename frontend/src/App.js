@@ -24,6 +24,8 @@ import axios from 'axios';
 import Payment from './component/Cart/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import OrderSuccess from './component/Cart/OrderSuccess';
+import MyOrders from './component/Order/MyOrders';
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -69,11 +71,12 @@ function App() {
                   <Route path='/account' element={<Profile />} />
                   <Route path="/shipping" element={<Shipping />} />
                   <Route path="/order/confirm" element={<ConfirmOrder />} />
+                  <Route path="/success" element={<OrderSuccess />} />
+                  <Route path="/orders" element={<MyOrders />} />
+                  <Route path="/cart" element={<Cart />} />
                 </Route>
 
                 <Route path='/login' element={<LoginSignUp />} />
-
-                <Route path="/cart" element={<Cart />} />
               </Routes>
               {stripeApiKey && (
                 <Elements stripe={loadStripe(stripeApiKey)}>
