@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import CheckoutSteps from './CheckoutSteps'
 import { Box, Typography } from '@mui/material'
 import { CreditCard, Event, VpnKey } from '@mui/icons-material'
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { createOrder, clearErrors } from '../../actions/orderAction'
 
 const useStyles = makeStyles((theme) => ({
     paymentContainer: {
@@ -103,10 +104,19 @@ function Payment() {
 
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
-    // const { error } = useSelector((state) => state.newOrder);
+    const { error } = useSelector((state) => state.newOrder);
 
     const paymentData = {
         amount: Math.round(orderInfo.totalPrice * 100),
+    }
+
+    const order = {
+        shippingInfo,
+        orderItems: cartItems,
+        itemsPrice: orderInfo.subtotal,
+        taxPrice: orderInfo.tax,
+        shippingPrice: orderInfo.shippingCharges,
+        totalPrice: orderInfo.totalPrice,
     }
 
     const submitHandler = async (e) => {
@@ -154,6 +164,13 @@ function Payment() {
                 alert.error(result.error.message)
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
+                    order.paymentInfo = {
+                        id: result.paymentIntent.id,
+                        status: result.paymentIntent.status,
+                    }
+
+                    dispatch(createOrder(order));
+
                     navigate("/success");
                 } else {
                     alert.error("There's some issue while processing payment");
@@ -165,6 +182,14 @@ function Payment() {
             alert.error(error.response.data.message);
         }
     }
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+    }, [error, dispatch, alert])
+
     return (
         <>
             <title>Payment</title>
