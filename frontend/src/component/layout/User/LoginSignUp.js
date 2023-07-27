@@ -291,7 +291,7 @@ const LoginSignUp = () => {
     }
 
     if (isAuthenticated) {
-      navigate("/shipping");
+      navigate("/");
     }
 
   }, [dispatch, error, alert, isAuthenticated, navigate]);
