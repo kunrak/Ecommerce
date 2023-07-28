@@ -43,8 +43,9 @@ export const createOrder = (order) => async (dispatch) => {
     }
 };
 
-// My Orders
-export const myOrders = () => async (dispatch) => {
+
+//My Orders
+export const myOrders = () => async (dispatch, getState) => {
     try {
         dispatch({ type: MY_ORDERS_REQUEST });
 
@@ -55,9 +56,10 @@ export const myOrders = () => async (dispatch) => {
         dispatch({
             type: MY_ORDERS_FAIL,
             payload: error.response.data.message,
-        });
+        })
     }
-};
+}
+
 
 // Get All Orders (admin)
 export const getAllOrders = () => async (dispatch) => {

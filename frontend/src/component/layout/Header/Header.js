@@ -98,7 +98,11 @@ const Header = () => {
                         </select>
                         <Link to="/search"><Search /></Link>
                         <Link to="/cart"><ShoppingCart /></Link>
-                        <Link to="/login"><AccountCircle /></Link>
+                        {
+                            !isAuthenticated && (
+                                <Link to="/login"><AccountCircle /></Link>
+                            )
+                        }
                         {isAuthenticated && (
                             <Box style={{ cursor: 'pointer' }} onClick={logOutHandler}>
                                 <Logout />
