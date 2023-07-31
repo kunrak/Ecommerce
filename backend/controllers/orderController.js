@@ -1,6 +1,6 @@
 const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
-const ErrorHander = require("../utils/errorHander");
+const ErrorHander = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 // Create new Order
@@ -89,29 +89,29 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHander("You have already delivered this order", 400));
     }
 
-    order.orderItems.forEach(async (order) => {
-        await updateStock(order.Product, order.quantity);
-    })
-
+    if (req.body.status === "Shipped") {
+        order.orderItems.forEach(async (o) => {
+            await updateStock(o.product, o.quantity);
+        });
+    }
     order.orderStatus = req.body.status;
 
     if (req.body.status === "Delivered") {
         order.deliveredAt = Date.now();
     }
 
-    await order.save({ validateBeforeSave: false })
-
+    await order.save({ validateBeforeSave: false });
     res.status(200).json({
         success: true,
-    })
-})
+    });
+});
 
 async function updateStock(id, quantity) {
     const product = await Product.findById(id);
 
     product.Stock -= quantity;
 
-    await product.save({ validateBeforeSave: false })
+    await product.save({ validateBeforeSave: false });
 }
 
 // delete Order -- Admin
@@ -122,8 +122,7 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHander("Order not found with this Id", 404));
     }
 
-    // await order.remove();
-    await Order.findByIdAndRemove(req.params.id);
+    await order.remove();
 
     res.status(200).json({
         success: true,
