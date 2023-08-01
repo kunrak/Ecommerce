@@ -115,8 +115,7 @@ const Home = () => {
                         </a>
                     </div>
 
-                    <h2 className={classes.homeHeading}>Featured Products</h2>
-
+                    <h2 className={classes.homeHeading}>{t('featured')}</h2>
                     <Box className={classes.container} id="container">
                         {products &&
                             products.map((product) => (

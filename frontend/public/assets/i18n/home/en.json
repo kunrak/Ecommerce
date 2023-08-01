@@ -1,5 +1,6 @@
 {
     "welcomeMsg": "Welcome to the Ecommerce",
     "headingTitle": "FIND AMAZING PRODUCTS BELOW",
-    "buttonText": "Scroll"
+    "buttonText": "Scroll",
+    "featured": "Featured Products"
 }

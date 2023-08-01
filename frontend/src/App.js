@@ -14,7 +14,6 @@ import ErrorBoundary from './ErrorBoundary';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './Theme';
 import { loadUser } from './actions/userAction';
-import UserOptions from './component/layout/Header/UserOptions';
 import { useSelector } from 'react-redux';
 import Profile from './component/layout/User/Profile';
 import ProtectedRoute from './component/Route/ProtectedRoute';
