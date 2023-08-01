@@ -47,6 +47,7 @@ const options = {
 
 const Header = () => {
     const { i18n } = useTranslation(["home"]);
+    const { t } = useTranslation(["header"]);
 
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -76,18 +77,18 @@ const Header = () => {
             <Box display="flex" justifyContent="space-between">
                 <Box display="flex" alignItems="center" pl={5}>
                     <Link to="/" style={{ textDecoration: 'none' }}>
-                        <Typography variant="h5">Ecommerce</Typography>
+                        <Typography variant="h5">{t('appName')}</Typography>
                     </Link>
                 </Box>
                 <Stack direction="row" display="flex" alignItems="center" spacing={4} pl={12} >
                     <Link to="/products" style={{ textDecoration: 'none' }}>
-                        <Typography>Products</Typography>
+                        <Typography>{t('products')}</Typography>
                     </Link>
                     <Link to="/orders" style={{ textDecoration: 'none' }}>
-                        <Typography>Orders</Typography>
+                        <Typography>{t('orders')}</Typography>
                     </Link>
                     <Link to="/account" style={{ textDecoration: 'none' }}>
-                        <Typography>Profile</Typography>
+                        <Typography>{t('profile')}</Typography>
                     </Link>
                 </Stack>
                 <Box display="flex" p={2} >

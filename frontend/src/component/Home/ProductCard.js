@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
     productCard: {
@@ -51,6 +52,7 @@ const useStyles = makeStyles({
 })
 
 const ProductCard = ({ product }) => {
+    const { t } = useTranslation(["product"]);
     const classes = useStyles();
 
     const options = {
@@ -64,7 +66,7 @@ const ProductCard = ({ product }) => {
             <p>{product.name}</p>
             <Rating {...options} />
             <span className={classes.productCardSpan}>
-                ({product.numOfReviews} Reviews)
+                ({product.numOfReviews} {t('reviews')})
             </span>
             {/* <div>
                 <Rating {...options} />{" "}
