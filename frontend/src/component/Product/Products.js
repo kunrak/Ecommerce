@@ -7,6 +7,7 @@ import { Box, Slider, Typography } from '@mui/material';
 import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     productsHeading: {
@@ -126,6 +127,8 @@ const categories = [
 ];
 
 const Products = () => {
+    const { t } = useTranslation(["product"]);
+
     const keyword = useParams();
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -170,7 +173,7 @@ const Products = () => {
                 <Loader />
             ) : (
                 <>
-                    <h2 className={classes.productsHeading}>Products</h2>
+                    <h2 className={classes.productsHeading}>{t('product')}</h2>
 
                     <Box className={classes.products}>
                         {products &&
@@ -180,7 +183,7 @@ const Products = () => {
                     </Box>
 
                     <Box className={classes.filterBox}>
-                        <Typography>Price</Typography>
+                        <Typography>{t('price')}</Typography>
                         <Slider
                             value={price}
                             onChange={priceHandler}
@@ -190,7 +193,7 @@ const Products = () => {
                             max={150000}
                         />
 
-                        <Typography>Categories</Typography>
+                        <Typography>{t('categories')}</Typography>
                         <ul className={classes.categoryBox}>
                             {categories.map((category) => (
                                 <li

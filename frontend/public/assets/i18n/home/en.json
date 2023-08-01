@@ -2,5 +2,8 @@
     "welcomeMsg": "Welcome to the Ecommerce",
     "headingTitle": "FIND AMAZING PRODUCTS BELOW",
     "buttonText": "Scroll",
-    "featured": "Featured Products"
+    "featured": "Featured Products",
+    "myProfile": "My Profile",
+    "fullName": "Full Name",
+    "email": "Email"
 }
