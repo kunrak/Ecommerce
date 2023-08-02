@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     },
     shippingBtn: {
         border: 'none',
-        backgroundColor: 'tomato',
+        backgroundColor: '#6C91C2',
         color: 'white',
         font: '300 1vmax "Roboto"',
         width: '100%',
@@ -236,6 +236,7 @@ function Shipping() {
                         <input
                             type="submit"
                             value="Continue"
+                            backgroundColor='#6C91C2'
                             className={classes.shippingBtn}
                             disabled={state ? false : true}
                         />

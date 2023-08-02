@@ -9,7 +9,8 @@ export const theme = createTheme({
                 root: {
                     // Some CSS
                     fontSize: '1rem',
-                    backgroundColor: 'tomato',
+                    color: 'white',
+                    backgroundColor: '#6C91C2',
                 },
             },
         },

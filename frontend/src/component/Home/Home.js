@@ -39,30 +39,10 @@ const useStyles = makeStyles((theme) => ({
         width: '9vmax',
         font: '500 1vmax "Roboto"',
     },
-    '& > a > button:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0)',
-        color: 'white',
-    },
     container: {
         display: 'flex',
         justifyContent: 'space-evenly',
         margin: '2vmax auto',
-    },
-    '@media screen and (max-width: 600px)': {
-        '& > p': {
-            fontSize: '1.7vmax',
-        },
-        '& > div': {
-            margin: '0vmax',
-            display: 'block',
-        },
-        '& > span': {
-            fontSize: '1.5vmax',
-        },
-        '& > div > span': {
-            margin: '0 0.5vmax',
-            font: '300 1vmax "Roboto"',
-        },
     },
 }));
 
@@ -94,7 +74,7 @@ const Home = () => {
                         <Typography variant="h4" m={6}>{t("headingTitle")}</Typography>
 
                         <Link href="#container">
-                            <Button className={classes.scrollButton} sx={{ color: "white", backgroundColor: "blue" }}>
+                            <Button className={classes.scrollButton}>
                                 {t("buttonText")} <CgMouse />
                             </Button>
                         </Link>

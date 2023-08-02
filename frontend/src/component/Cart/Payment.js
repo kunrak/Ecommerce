@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paymentFormBtn: {
         border: 'none',
-        backgroundColor: 'tomato',
+        backgroundColor: '#6C91C2',
         color: 'white',
         font: '300 0.9vmax "Roboto"',
         width: '100%',

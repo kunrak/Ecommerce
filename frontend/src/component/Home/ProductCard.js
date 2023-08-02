@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Rating } from "@mui/material";
+import { Box, Rating, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 
@@ -66,7 +66,7 @@ const ProductCard = ({ product }) => {
     return (
         <Link className={classes.productCard} to={`/product/${product._id}`}>
             <img src={product.images[0].url} alt={product.name} />
-            <p>{product.name}</p>
+            <Typography>{product.name}</Typography>
             <Rating {...options} />
             <span className={classes.productCardSpan}>
                 ({product.numOfReviews} {t('reviews')})

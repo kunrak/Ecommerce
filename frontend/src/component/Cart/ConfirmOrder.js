@@ -115,8 +115,6 @@ const useStyles = makeStyles((theme) => ({
             padding: '2vmax 0',
         },
         '& > button': {
-            backgroundColor: 'tomato',
-            color: 'white',
             width: '100%',
             padding: '1vmax',
             border: 'none',
@@ -236,7 +234,7 @@ function ConfirmOrder() {
                             <span>₹{totalPrice}</span>
                         </Box>
                         <hr />
-                        <button onClick={proceedToPayment}>Proceed To Payment</button>
+                        <Button onClick={proceedToPayment}>Proceed To Payment</Button>
                     </Box>
                 </Box>
             </Box>

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        backgroundColor: "rgb(34, 33, 33)",
+        backgroundColor: "#373F47",
         marginTop: "10vmax",
         display: "flex",
         flexDirection: "row",
