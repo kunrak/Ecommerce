@@ -14,17 +14,6 @@ const useStyles = makeStyles({
         margin: '2vmax',
         transition: 'all 0.5s',
         paddingBottom: '0.5vmax',
-        '& > img': {
-            width: '13vmax',
-            height: '16vmax',
-            objectFit: 'contain',
-        },
-        '& > div': {
-            margin: '0.5vmax',
-            display: 'flex',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-        },
         '& > p': {
             fontFamily: 'Roboto',
             fontSize: '1.2vmax',
@@ -38,6 +27,17 @@ const useStyles = makeStyles({
             fontSize: '1vmax',
         },
 
+    },
+    productImg: {
+        width: '13vmax',
+        height: '16vmax',
+        objectFit: 'contain',
+    },
+    productBox: {
+        margin: '0.5vmax',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     productCardSpan: {
         margin: '0.5vmax',
@@ -60,6 +60,9 @@ const ProductCard = ({ product }) => {
         readOnly: true,
         precision: 0.5,
     };
+
+    console.log(product);
+
     return (
         <Link className={classes.productCard} to={`/product/${product._id}`}>
             <img src={product.images[0].url} alt={product.name} />

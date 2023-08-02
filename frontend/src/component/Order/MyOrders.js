@@ -98,21 +98,21 @@ function MyOrder() {
             flex: 0.5,
         },
 
-        {
-            field: "actions",
-            flex: 0.3,
-            headerName: "Actions",
-            minWidth: 150,
-            type: "number",
-            sortable: false,
-            // renderCell: () => {
-            //     return (
-            //         <Link to={`/order/${params.getValue(params.id, "id")}`}>
-            //             <LaunchIcon />
-            //         </Link>
-            //     );
-            // },
-        },
+        // {
+        //     field: "actions",
+        //     flex: 0.3,
+        //     headerName: "Actions",
+        //     minWidth: 150,
+        //     type: "number",
+        //     sortable: false,
+        //     // renderCell: () => {
+        //     //     return (
+        //     //         <Link to={`/order/${params.getValue(params.id, "id")}`}>
+        //     //             <LaunchIcon />
+        //     //         </Link>
+        //     //     );
+        //     // },
+        // },
 
 
     ]

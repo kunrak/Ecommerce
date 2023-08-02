@@ -13,7 +13,7 @@ i18n
         },
         fallbackLng: 'en',
         debug: false,
-        ns: ["home", "footer", "product", "header"],
+        ns: ["home", "footer", "product", "header", "cart"],
         interpolation: {
             escapeValue: false,
             formatSeparator: ",",

@@ -6,7 +6,7 @@ import { useAlert } from "react-alert";
 import ProductCard from "./ProductCard";
 import Loader from "../layout/Loader/Loader.js";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/material";
+import { Box, Button, Container, Link, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,46 +22,31 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
-        '& > h1': {
-            margin: '5vmax',
-            font: '600 2.5vmax "Roboto"',
-        },
-        '& > p': {
-            font: '300 1.4vmax "Lucida Sans"',
-        },
-        '& > a > button': {
-            marginBottom: '5vmax',
-            cursor: 'pointer',
-            backgroundColor: 'white',
-            border: '1px solid white',
-            borderRadius: 0,
-            padding: '1vmax',
-            transition: 'all 0.5s',
-            width: '9vmax',
-            font: '500 1vmax "Roboto"',
-        },
-        '& > a > button:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0)',
-            color: 'white',
-        },
     },
     homeHeading: {
         textAlign: 'center',
-        fontFamily: 'Roboto',
-        fontSize: '1.4vmax',
         borderBottom: '1px solid rgba(21, 21, 21, 0.5)',
-        width: '20vmax',
         padding: '1vmax',
-        margin: '5vmax auto',
-        color: 'rgb(0, 0, 0, 0.7)',
+    },
+    scrollButton: {
+        marginBottom: '5vmax',
+        cursor: 'pointer',
+        backgroundColor: 'white',
+        border: '1px solid white',
+        borderRadius: 0,
+        padding: '1vmax',
+        transition: 'all 0.5s',
+        width: '9vmax',
+        font: '500 1vmax "Roboto"',
+    },
+    '& > a > button:hover': {
+        backgroundColor: 'rgba(255, 255, 255, 0)',
+        color: 'white',
     },
     container: {
         display: 'flex',
+        justifyContent: 'space-evenly',
         margin: '2vmax auto',
-        width: '80vw',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        maxWidth: '100%',
     },
     '@media screen and (max-width: 600px)': {
         '& > p': {
@@ -104,24 +89,26 @@ const Home = () => {
                 <Loader />
             ) : (
                 <>
-                    <div className={classes.banner}>
-                        <p>{t("welcomeMsg")}</p>
-                        <h1>{t("headingTitle")}</h1>
+                    <Box className={classes.banner}>
+                        <Typography>{t("welcomeMsg")}</Typography>
+                        <Typography variant="h4" m={6}>{t("headingTitle")}</Typography>
 
-                        <a href="#container">
-                            <button>
+                        <Link href="#container">
+                            <Button className={classes.scrollButton} sx={{ color: "white", backgroundColor: "blue" }}>
                                 {t("buttonText")} <CgMouse />
-                            </button>
-                        </a>
-                    </div>
-
-                    <h2 className={classes.homeHeading}>{t('featured')}</h2>
-                    <Box className={classes.container} id="container">
-                        {products &&
-                            products.map((product) => (
-                                <ProductCard key={product._id} product={product} />
-                            ))}
+                            </Button>
+                        </Link>
                     </Box>
+
+                    <Container>
+                        <Typography className={classes.homeHeading}>{t('featured')}</Typography>
+                        <Box className={classes.container} id="container">
+                            {products &&
+                                products.map((product) => (
+                                    <ProductCard key={product._id} product={product} />
+                                ))}
+                        </Box>
+                    </Container>
                 </>
             )}
         </>

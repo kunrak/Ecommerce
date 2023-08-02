@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction';
 import { RemoveShoppingCart } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     emptyCart: {
@@ -193,6 +194,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Cart() {
+    const { t } = useTranslation(["cart"]);
     const classes = useStyles();
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
@@ -236,9 +238,9 @@ function Cart() {
             ) : (
                 <Box className={classes.cartPage}>
                     <Box className={classes.cartHeader}>
-                        <p className={classes.cartHeaderText}>Product</p>
-                        <p className={classes.cartHeaderText}>Quantity</p>
-                        <p className={classes.cartHeaderTextEnd}>Subtotal</p>
+                        <p className={classes.cartHeaderText}>{t('product')}</p>
+                        <p className={classes.cartHeaderText}>{t('quantity')}</p>
+                        <p className={classes.cartHeaderTextEnd}>{t('subTotal')}</p>
                     </Box>
 
                     {cartItems && cartItems.map((item) => (
