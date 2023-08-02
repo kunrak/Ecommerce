@@ -1,0 +1,9 @@
+{
+    "product": "Product",
+    "quantity": "Quantity",
+    "price": "Price",
+    "total": "Gross Total",
+    "subtotal": "Subtotal",
+    "remove": "Remove",
+    "checkOut": "Check Out"
+}
