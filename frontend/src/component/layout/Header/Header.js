@@ -2,7 +2,7 @@ import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
 import { AccountCircle, Logout, Search, ShoppingCart } from "@mui/icons-material";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
@@ -52,7 +52,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { error, loading, isAuthenticated } = useSelector((state) => state.user);
+    const { isAuthenticated } = useSelector((state) => state.user);
 
     useEffect(() => {
         if (localStorage.getItem("i18nextLng")?.length > 2) {
