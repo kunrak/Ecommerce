@@ -84,12 +84,20 @@ const Header = () => {
                     <Link to="/products" style={{ textDecoration: 'none' }}>
                         <Typography>{t('products')}</Typography>
                     </Link>
-                    <Link to="/orders" style={{ textDecoration: 'none' }}>
-                        <Typography>{t('orders')}</Typography>
-                    </Link>
-                    <Link to="/account" style={{ textDecoration: 'none' }}>
-                        <Typography>{t('profile')}</Typography>
-                    </Link>
+
+                    {/* Only showing the Orders and Profile route if the user is logged in */}
+                    {
+                        isAuthenticated && (
+                            <>
+                                <Link to="/orders" style={{ textDecoration: 'none' }}>
+                                    <Typography>{t('orders')}</Typography>
+                                </Link>
+                                <Link to="/account" style={{ textDecoration: 'none' }}>
+                                    <Typography>{t('profile')}</Typography>
+                                </Link>
+                            </>
+                        )
+                    }
                 </Stack>
                 <Box display="flex" p={2} >
                     <Stack direction="row" spacing={2} >
@@ -104,6 +112,8 @@ const Header = () => {
                                 <Link to="/login"><AccountCircle /></Link>
                             )
                         }
+
+                        {/* Switching the profile and logout button based on authentication */}
                         {isAuthenticated && (
                             <Box style={{ cursor: 'pointer' }} onClick={logOutHandler}>
                                 <Logout />
@@ -112,6 +122,8 @@ const Header = () => {
                     </Stack>
                 </Box>
             </Box>
+
+            {/* Hamburger menu */}
             {isMobile && (
                 <>
                     <ReactNavbar {...options} />

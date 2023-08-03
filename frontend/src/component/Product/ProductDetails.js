@@ -386,7 +386,6 @@ const useStyles = makeStyles((theme) => ({
 const ProductDetails = () => {
     const classes = useStyles();
     const { id } = useParams();
-    console.log(id)
     const dispatch = useDispatch();
     const alert = useAlert();
 
@@ -461,7 +460,7 @@ const ProductDetails = () => {
         }
 
         dispatch(getProductDetails(id));
-    }, [dispatch, id, error, alert]);
+    }, [dispatch, id, error, alert, reviewError, success]);
 
     return (
         <>

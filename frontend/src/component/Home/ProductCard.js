@@ -4,6 +4,7 @@ import { Box, Rating, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 
+//Creating the styles for the Product Card
 const useStyles = makeStyles({
     productCard: {
         width: '14vmax',
@@ -61,8 +62,6 @@ const ProductCard = ({ product }) => {
         precision: 0.5,
     };
 
-    console.log(product);
-
     return (
         <Link className={classes.productCard} to={`/product/${product._id}`}>
             <img src={product.images[0].url} alt={product.name} />
@@ -71,12 +70,12 @@ const ProductCard = ({ product }) => {
             <span className={classes.productCardSpan}>
                 ({product.numOfReviews} {t('reviews')})
             </span>
-            {/* <div>
+            <div>
                 <Rating {...options} />{" "}
                 <Box className={classes.productCardSpan}>
                     ({product.numOfReviews} Reviews)
                 </Box>
-            </div> */}
+            </div>
             <Box>{`₹${product.price}`}</Box>
         </Link >
     );
