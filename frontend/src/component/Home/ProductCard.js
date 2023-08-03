@@ -63,6 +63,7 @@ const ProductCard = ({ product }) => {
     };
 
     return (
+        // Creating the product card
         <Link className={classes.productCard} to={`/product/${product._id}`}>
             <img src={product.images[0].url} alt={product.name} />
             <Typography>{product.name}</Typography>

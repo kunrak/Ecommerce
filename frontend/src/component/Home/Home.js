@@ -69,6 +69,7 @@ const Home = () => {
                 <Loader />
             ) : (
                 <>
+                    {/* Banner in the front page */}
                     <Box className={classes.banner}>
                         <Typography>{t("welcomeMsg")}</Typography>
                         <Typography variant="h4" m={6}>{t("headingTitle")}</Typography>
@@ -82,6 +83,8 @@ const Home = () => {
 
                     <Container>
                         <Typography className={classes.homeHeading}>{t('featured')}</Typography>
+
+                        {/* Rendering the products from the backend */}
                         <Box className={classes.container} id="container">
                             {products &&
                                 products.map((product) => (

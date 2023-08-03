@@ -70,14 +70,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         height: '8vmax',
     },
-    cartInputButton: {
-        border: 'none',
-        backgroundColor: 'rgba(0, 0, 0, 0.616)',
-        padding: '0.5vmax',
-        cursor: 'pointer',
-        color: 'white',
-        transition: 'all 0.5s',
-    },
     cartInputButtonHover: {
         backgroundColor: 'rgba(0, 0, 0, 0.767)',
     },
@@ -237,32 +229,32 @@ function Cart() {
                 </Box>
             ) : (
                 <Box className={classes.cartPage}>
-                    <Box className={classes.cartHeader}>
-                        <p className={classes.cartHeaderText}>{t('product')}</p>
-                        <p className={classes.cartHeaderText}>{t('quantity')}</p>
-                        <p className={classes.cartHeaderTextEnd}>{t('subTotal')}</p>
+                    <Box className={classes.cartHeader} p={0.5}>
+                        <Typography pl={2} className={classes.cartHeaderText}>{t('product')}</Typography>
+                        <Typography className={classes.cartHeaderText}>{t('quantity')}</Typography>
+                        <Typography pr={0.5} className={classes.cartHeaderTextEnd}>{t('subTotal')}</Typography>
                     </Box>
 
                     {cartItems && cartItems.map((item) => (
                         <Box className={classes.cartContainer} key={item.product}>
                             <CartItemCard item={item} deleteCartItems={deleteCartItems} />
                             <Box className={classes.cartInput}>
-                                <button onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)} variant='contained' className={classes.cartInputButton}>-</button>
+                                <Button onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)} variant='contained' sx={{ height: 25, minWidth: 10 }}>-</Button>
                                 <input className={classes.cartInputInput} type='number' value={item.quantity} readOnly />
-                                <button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)} variant='contained' className={classes.cartInputButton}>+</button>
+                                <Button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)} variant='contained' sx={{ height: 25, minWidth: 10 }}>+</Button>
                             </Box>
-                            <p className={classes.cartSubtotal}>{`$${item.price * item.quantity}`}</p>
+                            <Typography className={classes.cartSubtotal}>{`$${item.price * item.quantity}`}</Typography>
                         </Box>
                     ))}
 
                     <Box className={classes.cartGrossProfit}>
                         <Box></Box>
                         <Box className={classes.cartGrossProfitBox}>
-                            <p>Gross Total</p>
-                            <p>{`$${cartItems.reduce(
+                            <Typography>Gross Total</Typography>
+                            <Typography>{`$${cartItems.reduce(
                                 (acc, item) => acc + item.quantity * item.price,
                                 0
-                            )}`}</p>
+                            )}`}</Typography>
                         </Box>
                         <Box></Box>
                         <Container>
